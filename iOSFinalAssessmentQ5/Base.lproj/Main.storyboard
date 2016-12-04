@@ -92,6 +92,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="im9-gb-IwD" id="OVB-ck-8bQ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,6 +112,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="MyDetailImage" destination="Qts-lA-zrs" id="7Jc-B6-oyy"/>
+                        <outlet property="MyDetailTextField" destination="ocz-20-tNg" id="fhd-M1-Y28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKZ-oB-5K1" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     var myLabel: String?
     
     @IBOutlet weak var MyDetailImage: UIImageView!
+    @IBOutlet weak var MyDetailTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,4 +40,12 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+// 收鍵盤
+extension DetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
