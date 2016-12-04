@@ -8,21 +8,41 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate  {
     
     var myImage:String?
     var myLabel: String?
     
+    @IBOutlet weak var MyScrollView: UIScrollView!
     @IBOutlet weak var MyDetailImage: UIImageView!
     @IBOutlet weak var MyDetailTextField: UITextField!
 
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return MyDetailImage
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let myImage = myImage {
+        MyScrollView.contentSize = CGSize(width: self.MyScrollView.frame.width, height: self.MyScrollView.frame.height)
+//        MyDetailImage.frame = CGRect(x: Int(self.view.frame.width/2), y: Int(self.view.frame.height/2), width: 300, height: 300)
+        
+        if let myImage = myImage, let myLabel = myLabel {
             MyDetailImage.image = UIImage(named: myImage)
+            MyDetailTextField.text = myLabel
         }
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,target: self, action: #selector(share))
+        
+    }
+    
+    func share() {
+        if let myImage = myImage, let myLabel = myLabel {
+            if let shareImage = UIImage(named: myImage) {
+                let activity = UIActivityViewController(activityItems: [shareImage, myLabel], applicationActivities: nil)
+                present(activity, animated: true, completion: nil)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

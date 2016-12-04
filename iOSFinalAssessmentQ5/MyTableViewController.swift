@@ -8,13 +8,38 @@
 
 import UIKit
 
-class MyTableViewController: UITableViewController {
+class MyTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var ImageArray = ["gakki", "gakki", "gakki", "gakki", "gakki"]
     var LabelArray = ["gakki", "gakki", "gakki", "gakki", "gakki"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,target: self, action: #selector(addPhoto))
+        
+    }
+    
+    func addPhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("==No camera exist!==")
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            
+//            if let okImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//                // 8. 設定畫面上的imageView是我們照的照片
+//                myImage.image = okImage
+//                // 9. 存檔
+//                UIImageWriteToSavedPhotosAlbum(okImage, nil, nil, nil)
+//            }
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +109,7 @@ class MyTableViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let dvc = segue.destination as? DetailViewController
                 dvc?.myImage = self.ImageArray[indexPath.row]
+                dvc?.myLabel = self.LabelArray[indexPath.row]
             }
         }
     }

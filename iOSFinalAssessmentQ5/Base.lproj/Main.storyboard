@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,17 +25,17 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1af-gA-QvP" id="ndB-Xw-riG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y2w-t5-M9L">
-                                            <rect key="frame" x="20" y="10" width="99.5" height="99.5"/>
+                                            <rect key="frame" x="20" y="10" width="79.5" height="79.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="y2w-t5-M9L" secondAttribute="height" multiplier="1:1" id="ACd-Ah-AnH"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="926-67-wBD">
-                                            <rect key="frame" x="139.5" y="49" width="42" height="21"/>
+                                            <rect key="frame" x="119.5" y="39.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -60,9 +61,7 @@
                             <outlet property="delegate" destination="1Dm-0T-HXl" id="MjD-6o-xDa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Photo" id="vUv-S4-Djf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Ew-Pv-7tW"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Photo" id="vUv-S4-Djf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMQ-iN-8kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +70,7 @@
         <!--Detail View Controller-->
         <scene sceneID="kSa-0Y-cV8">
             <objects>
-                <viewController id="im9-gb-IwD" customClass="DetailViewController" customModule="iOSFinalAssessmentQ5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="im9-gb-IwD" customClass="DetailViewController" customModule="iOSFinalAssessmentQ5" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xCy-Em-NWR"/>
                         <viewControllerLayoutGuide type="bottom" id="ATr-Jk-w6K"/>
@@ -80,15 +79,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qts-lA-zrs">
-                                <rect key="frame" x="37" y="183" width="300" height="300"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.5" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Ox-Qxi">
+                                <rect key="frame" x="16" y="64" width="343" height="417"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qts-lA-zrs">
+                                        <rect key="frame" x="21.5" y="58.5" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="hRQ-OT-QDi"/>
+                                            <constraint firstAttribute="width" constant="300" id="veL-uF-zeZ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="hRQ-OT-QDi"/>
-                                    <constraint firstAttribute="width" constant="300" id="veL-uF-zeZ"/>
+                                    <constraint firstItem="Qts-lA-zrs" firstAttribute="centerY" secondItem="fXy-Ox-Qxi" secondAttribute="centerY" id="POH-XV-pVK"/>
+                                    <constraint firstItem="Qts-lA-zrs" firstAttribute="centerX" secondItem="fXy-Ox-Qxi" secondAttribute="centerX" id="VJR-1I-AiF"/>
                                 </constraints>
-                            </imageView>
+                                <connections>
+                                    <outlet property="delegate" destination="im9-gb-IwD" id="FZY-DB-RQK"/>
+                                </connections>
+                            </scrollView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocz-20-tNg">
-                                <rect key="frame" x="36" y="503" width="303" height="30"/>
+                                <rect key="frame" x="36" y="501" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -99,25 +110,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="height" secondItem="RoU-We-dnc" secondAttribute="height" multiplier="5:8" id="1pm-YU-lbU"/>
+                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="top" secondItem="xCy-Em-NWR" secondAttribute="bottom" id="J1M-yE-QxO"/>
                             <constraint firstItem="ocz-20-tNg" firstAttribute="centerX" secondItem="RoU-We-dnc" secondAttribute="centerX" id="MI7-FM-MYf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ocz-20-tNg" secondAttribute="trailing" constant="20" id="RvB-6I-MdM"/>
-                            <constraint firstItem="Qts-lA-zrs" firstAttribute="centerY" secondItem="RoU-We-dnc" secondAttribute="centerY" id="aQh-mS-SoM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fXy-Ox-Qxi" secondAttribute="trailing" id="aci-ww-8VT"/>
                             <constraint firstItem="ocz-20-tNg" firstAttribute="leading" secondItem="RoU-We-dnc" secondAttribute="leadingMargin" constant="20" id="eAh-vz-Izm"/>
-                            <constraint firstItem="ocz-20-tNg" firstAttribute="top" secondItem="Qts-lA-zrs" secondAttribute="bottom" constant="20" id="gMw-Kz-h3r"/>
-                            <constraint firstItem="Qts-lA-zrs" firstAttribute="centerX" secondItem="RoU-We-dnc" secondAttribute="centerX" id="oOZ-WN-b0q"/>
+                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="leading" secondItem="RoU-We-dnc" secondAttribute="leadingMargin" id="kXd-MY-jGT"/>
+                            <constraint firstItem="ocz-20-tNg" firstAttribute="top" secondItem="fXy-Ox-Qxi" secondAttribute="bottom" constant="20" id="qld-L9-De5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9mL-bk-xF6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="4fV-g2-E8e"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="9mL-bk-xF6"/>
                     <connections>
                         <outlet property="MyDetailImage" destination="Qts-lA-zrs" id="7Jc-B6-oyy"/>
                         <outlet property="MyDetailTextField" destination="ocz-20-tNg" id="fhd-M1-Y28"/>
+                        <outlet property="MyScrollView" destination="fXy-Ox-Qxi" id="LDJ-oP-YJS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKZ-oB-5K1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1551" y="36"/>
+            <point key="canvasLocation" x="1549.5999999999999" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EzK-1N-g04">
