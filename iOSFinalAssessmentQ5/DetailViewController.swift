@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailViewController: UIViewController, UIScrollViewDelegate  {
     
-    var myImage:String?
-    var myLabel: String?
+    var myObject:MyObject?
     
     @IBOutlet weak var MyScrollView: UIScrollView!
     @IBOutlet weak var MyDetailImage: UIImageView!
     @IBOutlet weak var MyDetailTextField: UITextField!
+    @IBAction func updateText(_ sender: Any) {
+        if let newText = MyDetailTextField.text {
+            let root = self.navigationController?.viewControllers.first as! MyTableViewController
+            let realm = root.realm
+            print("==========input==========")
+            try! realm.write {
+                myObject?.myDescri = newText
+                print("*****\(myObject)*****")
+            }
+        }        
+    }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return MyDetailImage
@@ -27,22 +38,28 @@ class DetailViewController: UIViewController, UIScrollViewDelegate  {
         MyScrollView.contentSize = CGSize(width: self.MyScrollView.frame.width, height: self.MyScrollView.frame.height)
 //        MyDetailImage.frame = CGRect(x: Int(self.view.frame.width/2), y: Int(self.view.frame.height/2), width: 300, height: 300)
         
-        if let myImage = myImage, let myLabel = myLabel {
-            MyDetailImage.image = UIImage(named: myImage)
-            MyDetailTextField.text = myLabel
-        }
+        let docUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = docUrl.appendingPathComponent((myObject?.myPhoto)!)
+        let data = NSData(contentsOf: url)
+        let image = UIImage(data: data! as Data)
+        let textOfImage = myObject?.myDescri
+
+            MyDetailImage.image = image
+            MyDetailTextField.text = textOfImage
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,target: self, action: #selector(share))
         
     }
     
     func share() {
-        if let myImage = myImage, let myLabel = myLabel {
-            if let shareImage = UIImage(named: myImage) {
-                let activity = UIActivityViewController(activityItems: [shareImage, myLabel], applicationActivities: nil)
-                present(activity, animated: true, completion: nil)
-            }
-        }
+        let docUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = docUrl.appendingPathComponent((myObject?.myPhoto)!)
+        let data = NSData(contentsOf: url)
+        let image = UIImage(data: data! as Data)
+        let textOfImage = myObject?.myDescri
+
+        let activity = UIActivityViewController(activityItems: [image, textOfImage], applicationActivities: nil)
+        present(activity, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,8 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -79,45 +77,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.5" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Ox-Qxi">
-                                <rect key="frame" x="16" y="64" width="343" height="417"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" minimumZoomScale="0.5" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Ox-Qxi">
+                                <rect key="frame" x="0.0" y="64" width="374" height="603"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qts-lA-zrs">
-                                        <rect key="frame" x="21.5" y="58.5" width="300" height="300"/>
+                                        <rect key="frame" x="38" y="151.5" width="300" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="hRQ-OT-QDi"/>
                                             <constraint firstAttribute="width" constant="300" id="veL-uF-zeZ"/>
                                         </constraints>
                                     </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocz-20-tNg">
+                                        <rect key="frame" x="20" y="471.5" width="335" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="wqd-ZY-gjM"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="updateText:" destination="im9-gb-IwD" eventType="editingDidEnd" id="6MJ-Gg-QjC"/>
+                                            <outlet property="delegate" destination="im9-gb-IwD" id="OVB-ck-8bQ"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ocz-20-tNg" secondAttribute="trailing" constant="20" id="39L-fp-mss"/>
+                                    <constraint firstAttribute="bottom" secondItem="ocz-20-tNg" secondAttribute="bottom" constant="300" id="5C3-BC-HME"/>
+                                    <constraint firstItem="ocz-20-tNg" firstAttribute="top" secondItem="Qts-lA-zrs" secondAttribute="bottom" constant="20" id="5aH-qt-o2K"/>
                                     <constraint firstItem="Qts-lA-zrs" firstAttribute="centerY" secondItem="fXy-Ox-Qxi" secondAttribute="centerY" id="POH-XV-pVK"/>
                                     <constraint firstItem="Qts-lA-zrs" firstAttribute="centerX" secondItem="fXy-Ox-Qxi" secondAttribute="centerX" id="VJR-1I-AiF"/>
+                                    <constraint firstItem="ocz-20-tNg" firstAttribute="centerX" secondItem="fXy-Ox-Qxi" secondAttribute="centerX" id="fGN-su-k9f"/>
+                                    <constraint firstItem="ocz-20-tNg" firstAttribute="leading" secondItem="fXy-Ox-Qxi" secondAttribute="leading" constant="20" id="iEu-9z-htB"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="im9-gb-IwD" id="FZY-DB-RQK"/>
                                 </connections>
                             </scrollView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ocz-20-tNg">
-                                <rect key="frame" x="36" y="501" width="303" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="im9-gb-IwD" id="OVB-ck-8bQ"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="height" secondItem="RoU-We-dnc" secondAttribute="height" multiplier="5:8" id="1pm-YU-lbU"/>
-                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="top" secondItem="xCy-Em-NWR" secondAttribute="bottom" id="J1M-yE-QxO"/>
-                            <constraint firstItem="ocz-20-tNg" firstAttribute="centerX" secondItem="RoU-We-dnc" secondAttribute="centerX" id="MI7-FM-MYf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ocz-20-tNg" secondAttribute="trailing" constant="20" id="RvB-6I-MdM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fXy-Ox-Qxi" secondAttribute="trailing" id="aci-ww-8VT"/>
-                            <constraint firstItem="ocz-20-tNg" firstAttribute="leading" secondItem="RoU-We-dnc" secondAttribute="leadingMargin" constant="20" id="eAh-vz-Izm"/>
-                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="leading" secondItem="RoU-We-dnc" secondAttribute="leadingMargin" id="kXd-MY-jGT"/>
-                            <constraint firstItem="ocz-20-tNg" firstAttribute="top" secondItem="fXy-Ox-Qxi" secondAttribute="bottom" constant="20" id="qld-L9-De5"/>
+                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="top" secondItem="xCy-Em-NWR" secondAttribute="bottom" id="gfV-rM-2g5"/>
+                            <constraint firstAttribute="trailing" secondItem="fXy-Ox-Qxi" secondAttribute="trailing" id="glZ-6w-Idh"/>
+                            <constraint firstItem="fXy-Ox-Qxi" firstAttribute="leading" secondItem="RoU-We-dnc" secondAttribute="leading" id="ldO-oQ-DHw"/>
+                            <constraint firstItem="ATr-Jk-w6K" firstAttribute="top" secondItem="fXy-Ox-Qxi" secondAttribute="bottom" id="qTJ-OP-knz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9mL-bk-xF6"/>

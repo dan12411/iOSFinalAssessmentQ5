@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5605964C1DF44113008E3340 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964A1DF44113008E3340 /* RealmSwift.framework */; };
+		5605964D1DF44113008E3340 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964B1DF44113008E3340 /* Realm.framework */; };
+		560596551DF50DCA008E3340 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964A1DF44113008E3340 /* RealmSwift.framework */; };
+		560596561DF50DCA008E3340 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964A1DF44113008E3340 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		560596581DF50DCD008E3340 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964B1DF44113008E3340 /* Realm.framework */; };
+		560596591DF50DCD008E3340 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5605964B1DF44113008E3340 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56C9E6A11DF14C9B00895F26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C9E6A01DF14C9B00895F26 /* AppDelegate.swift */; };
 		56C9E6A61DF14C9B00895F26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56C9E6A41DF14C9B00895F26 /* Main.storyboard */; };
 		56C9E6A81DF14C9B00895F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56C9E6A71DF14C9B00895F26 /* Assets.xcassets */; };
@@ -16,7 +22,24 @@
 		56E0AE811DF3F50900FFD696 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E0AE801DF3F50900FFD696 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		560596571DF50DCA008E3340 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				560596591DF50DCD008E3340 /* Realm.framework in Embed Frameworks */,
+				560596561DF50DCA008E3340 /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5605964A1DF44113008E3340 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		5605964B1DF44113008E3340 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		56C9E69D1DF14C9B00895F26 /* iOSFinalAssessmentQ5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSFinalAssessmentQ5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C9E6A01DF14C9B00895F26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56C9E6A51DF14C9B00895F26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,12 +56,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560596581DF50DCD008E3340 /* Realm.framework in Frameworks */,
+				5605964D1DF44113008E3340 /* Realm.framework in Frameworks */,
+				5605964C1DF44113008E3340 /* RealmSwift.framework in Frameworks */,
+				560596551DF50DCA008E3340 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5605964E1DF4411A008E3340 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5605964A1DF44113008E3340 /* RealmSwift.framework */,
+				5605964B1DF44113008E3340 /* Realm.framework */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
 		56C9E6941DF14C9B00895F26 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +94,7 @@
 		56C9E69F1DF14C9B00895F26 /* iOSFinalAssessmentQ5 */ = {
 			isa = PBXGroup;
 			children = (
+				5605964E1DF4411A008E3340 /* Realm */,
 				56E0AE7D1DF3ED2B00FFD696 /* Controllers */,
 				56E0AE7F1DF3ED4E00FFD696 /* Views */,
 				56E0AE7E1DF3ED4100FFD696 /* Supporting Files */,
@@ -104,6 +141,7 @@
 				56C9E6991DF14C9B00895F26 /* Sources */,
 				56C9E69A1DF14C9B00895F26 /* Frameworks */,
 				56C9E69B1DF14C9B00895F26 /* Resources */,
+				560596571DF50DCA008E3340 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -292,6 +330,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8H7X36TF25;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iOSFinalAssessmentQ5",
+				);
 				INFOPLIST_FILE = iOSFinalAssessmentQ5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ALPHAcamp.iOSFinalAssessmentQ5;
@@ -305,6 +347,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8H7X36TF25;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iOSFinalAssessmentQ5",
+				);
 				INFOPLIST_FILE = iOSFinalAssessmentQ5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.ALPHAcamp.iOSFinalAssessmentQ5;

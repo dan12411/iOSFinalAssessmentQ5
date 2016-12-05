@@ -26,6 +26,16 @@
 
 6. 加上ScrollView，新增兩指縮放功能
 
+7. 嘗試將照片存在.documentDirectory，並測試是否有存在APP裡
+
+8. 用realm & FileManager 來儲存圖片和文字，load image轉data
+
+9. 將修改註解update data
+
+10. scroll textfield
+
+11. detail view controller
+
 ---
 
 參考資料：
