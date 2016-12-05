@@ -40,4 +40,8 @@
 
 參考資料：
 
+1. [Realm](https://realm.io/docs/swift/latest/#writes)
+
+2. [Save & Load image from FileManager ](http://stackoverflow.com/questions/35685685/how-to-save-an-image-picked-from-a-uiimagepickercontroller-in-swift)
+
 
