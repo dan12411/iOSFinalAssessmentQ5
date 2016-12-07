@@ -34,6 +34,8 @@
 
 10. 將 UITextField Constraint，當鍵盤出現後，Constraint 做變更(上升)，避免輸入時，TextFiled 會被鍵盤擋住的問題...(參考資料 4.)
 
+![](https://github.com/dan12411/iOSFinalAssessmentQ5/blob/master/Q5_Demo.gif)
+
 ---
 
 參考資料：
