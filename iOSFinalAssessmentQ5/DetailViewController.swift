@@ -9,14 +9,15 @@
 import UIKit
 import RealmSwift
 
-class DetailViewController: UIViewController, UIScrollViewDelegate  {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     var myObject:MyObject?
     
     @IBOutlet weak var MyScrollView: UIScrollView!
     @IBOutlet weak var MyDetailImage: UIImageView!
     @IBOutlet weak var MyDetailTextField: UITextField!
-    @IBAction func updateText(_ sender: Any) {
+    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
+    @IBAction func upateText(_ sender: Any) {
         if let newText = MyDetailTextField.text {
             let root = self.navigationController?.viewControllers.first as! MyTableViewController
             let realm = root.realm
@@ -25,7 +26,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate  {
                 myObject?.myDescri = newText
                 print("*****\(myObject)*****")
             }
-        }        
+        }
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -35,8 +36,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
         MyScrollView.contentSize = CGSize(width: self.MyScrollView.frame.width, height: self.MyScrollView.frame.height)
-//        MyDetailImage.frame = CGRect(x: Int(self.view.frame.width/2), y: Int(self.view.frame.height/2), width: 300, height: 300)
         
         let docUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let url = docUrl.appendingPathComponent((myObject?.myPhoto)!)
@@ -49,6 +51,31 @@ class DetailViewController: UIViewController, UIScrollViewDelegate  {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,target: self, action: #selector(share))
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // For textField up, when keyboard show up
+    func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+                self.keyboardHeightLayoutConstraint?.constant = 80.0
+            } else {
+                self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 80.0
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
     
     func share() {
